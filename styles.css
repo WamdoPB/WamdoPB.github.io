@@ -125,15 +125,36 @@ a:hover {
     background-color: var(--bg-surface);
 }
 
+.muted {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.btn-primary {
+    margin-top: 12px;
+    padding: 12px 20px;
+
+    background-color: var(--accent-primary);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+
+    border-radius: 12px;
+    transition: background-color var(--speed-fast) var(--ease);
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-hover);
+    color: var(--text-primary);
+}
+
 /*Containers & Sections*/
 
+
 .container {
-    padding: 4rem 0;
     max-width: 900px;
-    margin: 40px auto;
-    align-items: center;
-    display: block;
-    justify-content: center;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .form-container {
@@ -146,14 +167,19 @@ a:hover {
 }
 
 .closed-container {
-    margin: 5%;
+    margin: 80px auto 40px;
+    padding: 48px 32px;
+    max-width: 720px;
+    width: calc(100% - 32px);
     background-color: var(--bg-surface);
     border-radius: 20px;
-    max-width: 90%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
     box-shadow: var(--shadow-soft);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+    transition: background-color var(--speed-fast) var(--ease);
 }
 
 .closed-container h2 {
@@ -165,6 +191,11 @@ a:hover {
     padding: 1.5em;
     padding-top: 0;
     text-align: left;
+}
+
+.content-section {
+    padding: 80px 0;
+    text-align: center;
 }
 
 .section-muted {
@@ -320,8 +351,7 @@ a:hover {
 /*Hero*/
 
 .hero {
-    background-color: var(--bg-main);
-    padding: 6rem 1.5rem 5rem;
+    padding: 120px 0 100px;
     text-align: center;
 }
 
@@ -339,13 +369,6 @@ a:hover {
 
 
 /*content section*/
-
-.content-section, .content-section2 {
-    padding: 40px 20px;
-    text-align: center;
-    margin-left: 0;
-    margin-right: 0;
-}
 
 .content-section li {
     color: var(--accent-primary);
