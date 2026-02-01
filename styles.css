@@ -1,0 +1,464 @@
+/*Everything is affected*/
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    font-family: 'Inter', 'Source Sans 3', 'IMB Plex Sans', 'Manrope', 'DM Sans';
+    color: var(--text-color);
+}
+
+:root {
+
+    --bg-main: #F6F7F8;
+    --bg-surface: #FFFFFF;
+    --bg-muted: #EEF0F2;
+
+    --text-primary: #1C1F24;
+    --text-secondary: #5E6B7A;
+
+    --accent-primary: #4A6FA5;
+    --accent-hover: #3E5F8F;
+
+    --radius-md: 14px;
+
+    --ease: cubic-bezier(.4,0,.2,1);
+    --speed-fast: 200ms;
+    --speed-normal: 350ms;
+
+    --transition-theme: background-color .5s ease, color .5s ease;
+}
+
+[data-theme="dark"] {
+    --bg-main: #121417;
+    --bg-surface: #1A1D21;
+    --bg-muted: #1F2329;
+
+    --text-primary: #E6E8EB;
+    --text-secondary: #A9B0BA;
+
+    --accent-primary: #7AA2E3;
+    --accent-hover: #628AD9;
+}
+
+
+html {
+    scroll-behavior: smooth;
+    background-color: var(--bg-main);
+    transition: none;
+}
+
+html.theme-ready {
+    transition: var(--transition-theme);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-top: 64px;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    transition: var(--transition-theme);
+    overflow-x: hidden;
+}
+
+section {
+    transition: var(--transition-theme);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: var(--text-secondary)
+}
+
+p {
+    font-size: 1.05rem;
+    color: var(--text-secondary)
+}
+
+h1 {
+    font-size: 3rem;
+    padding: 30px;
+    margin-bottom: 20px;
+    color: var(--text-primary)
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h2::after {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 3px;
+    background-color: var(--accent-primary);
+    margin: 12px auto 0;
+    border-radius: 2px;
+}
+
+a {
+    color: var(--accent-primary);
+}
+
+a:hover {
+    color: var(--accent-hover);
+}
+
+.theme-toggle {
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 6px;
+    border-radius: 8px;
+}
+
+.theme-toggle:hover {
+    background-color: var(--bg-surface);
+}
+
+/*Containers & Sections*/
+
+.container {
+    padding: 4rem 0;
+    max-width: 900px;
+    margin: 40px auto;
+    align-items: center;
+    display: block;
+    justify-content: center;
+}
+
+.form-container {
+    background-color: var(--bg-surface);
+    border-radius: 20px;
+    padding: 24px;
+    max-width: 420px;
+    margin: 80px auto 40px;
+    box-shadow: var(--shadow-soft);
+}
+
+.closed-container {
+    margin: 5%;
+    background-color: var(--bg-surface);
+    border-radius: 20px;
+    max-width: 90%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: var(--shadow-soft);
+}
+
+.closed-container h2 {
+    margin-top: 1em;
+    text-align: center;
+}
+
+.closed-container p {
+    padding: 1.5em;
+    padding-top: 0;
+    text-align: left;
+}
+
+.section-muted {
+    background-color: var(--bg-muted);
+}
+
+/*Navigation bar*/
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 64px;
+    background-color: var(--bg-muted);
+    z-index: 1000;
+    border-bottom: 1px solid var(--border-light);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    transition: var(--transition-theme);
+}
+
+.nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+}
+
+
+.logo-btn {
+    display: flex;
+    align-items: center;
+}
+
+.logo-btn img {
+    height: 40px;
+    width: auto;
+    display: block;
+}
+
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.nav-links a {
+    position: relative;
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--text-secondary);
+    padding: 4px 0;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 2px;
+    background-color: var(--accent-primary);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 1100;
+}
+
+.theme-toggle,
+.nav-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+}
+
+
+.nav-toggle {
+    display: none;
+    font-size: 1.6rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-primary);
+    line-height: 1;
+}
+
+/* MOBILE NAVBAR */
+
+@media (max-width: 768px) {
+
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 64px;
+        left: 0;
+        width: 100%;
+
+        background-color: var(--bg-muted);
+        margin-top: -17px;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+
+        padding: 24px 0;
+        border-bottom: 1px solid var(--border-light);
+
+        display: none;
+    }
+
+    .nav-actions {
+        margin-left: 0;
+        justify-content: flex-end;
+        width: auto;
+        gap: 6px;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-inner {
+        justify-content: space-between;
+        padding: 0 12px;
+    }
+}
+
+/*Hero*/
+
+.hero {
+    background-color: var(--bg-main);
+    padding: 6rem 1.5rem 5rem;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    color: var(--text-primary);
+}
+
+.hero-subtitle {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+}
+
+
+/*content section*/
+
+.content-section, .content-section2 {
+    padding: 40px 20px;
+    text-align: center;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.content-section li {
+    color: var(--accent-primary);
+}
+
+
+
+/*Contact us*/
+
+.social-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+    padding: 0 1rem;
+}
+
+.social-links a {
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+/*Footer*/ 
+
+.footer {
+    background-color: var(--bg-surface);
+    border-top: 1px solid var(--border-light);
+    transition: var(--transition-theme);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+
+}
+
+.footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+#footer {
+    margin-top: auto;
+}
+
+@media (max-width: 768px) {
+    .footer-inner {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+}
+
+
+
+
+
+
+/*About Page*/
+
+
+
+/*Login Form*/
+
+.form-container h2 {
+    text-align: center;
+}
+
+input, textarea, select, button {
+    min-width: 100%;
+    max-width: 100%;
+    color: var(--text-secondary);
+    background-color: var(--bg-muted);
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+
+    justify-content: center;
+    align-items: center;
+    display: block;
+    margin: 10px auto;
+}
+
+textarea:focus {
+    border-color: var(--accent-primary);
+    outline: var(--accent-primary);
+}
+
+.login-form button {
+    border: 1px solid var(--border-light);
+    border-width: 2px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.5s;
+}
+
+.login-form button:hover {
+    background-color: var(--accent-hover);
+    color: var(--text-primary);
+    border-color: var(--accent-hover);
+    transition: 0.5s;   
+}
+
+/*Mobile Login Form*/
+
+@media (max-width: 600px) {
+    .form-container {
+        margin: 100px 16px 40px;
+        padding: 20px;
+    }
+}
