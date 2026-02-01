@@ -1,15 +1,10 @@
-// =====================
-// THEME (apply immediately)
-// =====================
 (function () {
     const savedTheme = localStorage.getItem("theme");
-    const theme = savedTheme || "dark"; // default theme
+    const theme = savedTheme || "dark"; 
     document.documentElement.setAttribute("data-theme", theme);
 })();
 
-// =====================
-// FUNCTIONS
-// =====================
+
 function loadPartial(id, url, callback) {
     fetch(url)
         .then(res => res.text())
@@ -42,7 +37,6 @@ function setupNavbar() {
         }
     });
 
-    // Theme toggle button
     if (themeToggle) {
         updateThemeIcon();
         themeToggle.addEventListener("click", () => {
@@ -63,14 +57,11 @@ function updateThemeIcon() {
     btn.textContent = isDark ? "☀️" : "🌙";
 }
 
-// =====================
-// INITIALIZATION AFTER DOM READY
-// =====================
-document.addEventListener("DOMContentLoaded", () => {
-    // Load navbar and footer partials for all pages
-    loadPartial("navbar", "/website/partials/navbar.html", setupNavbar); // setupNavbar runs after navbar is loaded
-    loadPartial("footer", "/website/partials/footer.html");
 
-    // If you have more partials, add them here:
+document.addEventListener("DOMContentLoaded", () => {
+    loadPartial("navbar", "/partials/navbar.html", setupNavbar);
+
+    loadPartial("footer", "/partials/footer.html");
+
     // loadPartial("sidebar", "/partials/sidebar.html");
 });
