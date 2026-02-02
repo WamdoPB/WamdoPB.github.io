@@ -17,6 +17,7 @@
 
     --text-primary: #1C1F24;
     --text-secondary: #5E6B7A;
+    --text-contrast: #FFFFFF;
 
     --accent-primary: #4A6FA5;
     --accent-hover: #3E5F8F;
@@ -37,6 +38,7 @@
 
     --text-primary: #E6E8EB;
     --text-secondary: #A9B0BA;
+    --text-contrast: #1A1D21;
 
     --accent-primary: #7AA2E3;
     --accent-hover: #628AD9;
@@ -128,7 +130,7 @@ a:hover {
     padding: 12px 20px;
 
     background-color: var(--accent-primary);
-    color: white;
+    color: var(--text-contrast);
     text-decoration: none;
     font-weight: 600;
 
@@ -138,7 +140,7 @@ a:hover {
 
 .btn-primary:hover {
     background-color: var(--accent-hover);
-    color: var(--text-primary);
+    color: var(--text-contrast);
 }
 
 /*Containers & Sections*/
@@ -157,6 +159,7 @@ a:hover {
     max-width: 420px;
     margin: 80px auto 40px;
     box-shadow: var(--shadow-soft);
+    transition: background-color var(--speed-fast) var(--ease);
 }
 
 .closed-container {
@@ -283,6 +286,8 @@ a:hover {
     cursor: pointer;
     font-size: 1.2rem;
     color: var(--text-secondary);
+    min-width: 40px;
+    min-height: 40px;
 }
 
 
@@ -300,45 +305,75 @@ a:hover {
 
 @media (max-width: 768px) {
 
-    .nav-toggle {
-        display: block;
-    }
+  .navbar {
+    overflow: visible;
+  }
 
-    .nav-links {
-        position: absolute;
-        top: 64px;
-        left: 0;
-        width: 100%;
+  .nav-inner {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
 
-        background-color: var(--bg-muted);
-        margin-top: -17px;
-        border-bottom-left-radius: 20px;
-        border-bottom-right-radius: 20px;
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
+    padding: 0 14px;
+    height: 64px;
+    max-width: none;
+    margin: 0;
+  }
 
-        padding: 24px 0;
-        border-bottom: 1px solid var(--border-light);
+  .logo-btn {
+    grid-column: 1;
+  }
 
-        display: none;
-    }
+  .nav-actions {
+    grid-column: 3;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
 
-    .nav-actions {
-        margin-left: 0;
-        justify-content: flex-end;
-        width: auto;
-        gap: 6px;
-    }
+  .nav-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    line-height: 1;
+    padding: 6px;
+    color: var(--text-primary);
+    margin-left: 0;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+  }
 
-    .nav-links.open {
-        display: flex;
-    }
+  .nav-links {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
 
-    .nav-inner {
-        justify-content: space-between;
-        padding: 0 12px;
-    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    padding: 24px 0;
+    background-color: var(--bg-muted);
+    border-bottom: 1px solid var(--border-light);
+
+    transform: translateY(-10px);
+    opacity: 0;
+    pointer-events: none;
+
+    transition:
+      transform 250ms var(--ease),
+      opacity 200ms var(--ease);
+  }
+
+  .nav-links.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
 }
 
 /*Hero*/
@@ -455,6 +490,8 @@ textarea:focus {
 
 .login-form button {
     border: 1px solid var(--border-light);
+    background-color: var(--bg-muted);
+    color: var(--text-primary);
     border-width: 2px;
     cursor: pointer;
     font-weight: bold;
@@ -463,9 +500,8 @@ textarea:focus {
 
 .login-form button:hover {
     background-color: var(--accent-hover);
-    color: var(--text-primary);
-    border-color: var(--accent-hover);
-    transition: 0.5s;   
+    color: white;
+    transition: 0.5s;
 }
 
 /*Mobile Login Form*/

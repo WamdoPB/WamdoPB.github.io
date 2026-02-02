@@ -14,4 +14,4 @@ Official website for the Wamdo project.
 - Vanilla JavaScript
 
 ## Live site
-https://wamdopb.github.io/wamdo-website/
+https://wamdopb.github.io/
